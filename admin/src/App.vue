@@ -142,6 +142,7 @@ html,body,#app{min-height: 100%;height: 100%;}
   margin-left: 220px;
   font-size: 12px;
   height: auto;
+  min-height: 900px;
   //position: relative;
   z-index: 100;
   .page-bar{

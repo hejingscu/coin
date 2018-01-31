@@ -1,6 +1,6 @@
 <template>
   <div class="text-center" style="line-height: 400px">
-    欢迎来到资金服务管理系统<span v-if="!userProfile.phone">，请<a href="javascript:;" style="color: #27a1e5;margin: 0 4px;" @click="toLogin">登录</a></span>
+    coin管理系统<span v-if="!userProfile.phone">，请<a href="javascript:;" style="color: #27a1e5;margin: 0 4px;" @click="toLogin">登录</a></span>
   </div>
 </template>
 

@@ -28,53 +28,11 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/house': {
-                target: 'https://doc.trc.com/',
+            '/coin': {
+                target: 'http://10.200.4.140:3000/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/house': '/house'
-                }
-            },
-            '/account': {
-                target: 'http://devtest.360taihe.com/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/account': '/account'
-                }
-            },
-            '/funds-account-admin': {
-                target: 'http://10.200.4.140:7001/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/funds-account-admin': '/account'
-                }
-            },
-            '/funds-ecard-admin': {
-                target: 'http://10.200.4.140:7001/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/funds-ecard-admin': '/ecard'
-                }
-            },
-            '/funds-checkstand-admin': {
-                target: 'http://10.200.4.140:7001/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/funds-checkstand-admin': '/checkstand'
-                }
-            },
-            '/funds-report-admin': {
-                target: 'http://10.200.4.140:7001/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/funds-report-admin': '/report'
-                }
-            },
-            '/funds-score-admin': {
-                target: 'http://10.200.4.140:7001/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/funds-score-admin': '/score'
+                    '^/coin':'/coin'
                 }
             }
         },

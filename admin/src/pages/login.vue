@@ -4,7 +4,8 @@
     <br>
     密码<input type="password" name="" id="" v-model="formData.password">
     <br>
-    <button @click="submit()">提交</button>
+    <button @click="login()">登录</button>
+    <button @click="register()">注册</button>
   </div>
 </template>
 <script>
@@ -13,37 +14,32 @@ export default {
   data(){
     return{
       formData:{
-        phone: '18112341234',
+        phone: '18512341234',
         password: '123456'
       }
     }
   },
   methods:{
-    submit(){
+    jump(){
+      this.$router.push('/index')
+      this.$store.dispatch("getProfile",()=>{
+        this.$store.dispatch("getMenu")
+      })
+    },
+    login(){
       api.login($.param(this.formData)).then(res=>{
-        this.$router.push('/index')
-        this.$store.dispatch("getProfile",()=>{
-          this.$store.dispatch("getMenu")
-        })
+        this.$message({message: '登录成功',type: 'success'});
+        this.jump()
+      })
+    },
+    register(){
+      api.register($.param(this.formData)).then(res=>{
+        this.$message({message: '注册成功',type: 'success'});
       })
     }
   },
   created(){
-    // var data = "[{a:1,b:2},{a:3,b:4}]";
-    // var data1 = JSON.stringify([{a:1,b:2},{a:3,b:4}]);
-    // $.ajax({
-    //   url: '/house/qiniu/test',
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   contentType: 'application/json; charset=UTF-8',
-    //   data: {"test": data},
-    //   success: function(){
 
-    //   },
-    //   error: function(){
-
-    //   }
-    // })
   }
 }
 </script>

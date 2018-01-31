@@ -41,7 +41,7 @@
 
 <script>
 require('plupload/js/plupload.dev.js')
-require('qiniu-js/dist/qiniu.js')
+require('qiniu-js/dist/qiniu.min.js')
 import { getQiniuToken } from '@/api/api'
   export default {
     props: {

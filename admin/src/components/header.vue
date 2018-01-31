@@ -1,18 +1,10 @@
 <template lang="html">
   <div class="header" style="font-size: 14px;padding: 0">
     <div class="project-name fl" style="padding-left: 20px;">
-      <img src="../img/logo.png" height="30" width="30" alt="" style="margin-right: 6px;position: relative;top: -2px;">
-      资金服务管理系统
+      <img src="../img/logo.jpg" height="30" width="30" alt="" style="margin-right: 6px;position: relative;top: -2px;">
+      coin系统
     </div>
     <div style="margin-left: 20px;background: #2b3643;position: relative;z-index: 10;">
-      <div class="fl main-menu">
-        <li class="li-item ui-dropdown userInfo" @mouseenter="enter(i)" @mouseleave="leave()" v-for="(item,i) in menuList">
-          <a href="javascript:;">{{item.menuName}}</a>
-          <ul class="droplist"v-if="showTab === i">
-            <li @click="saveMenuToStore(child.menuResults)" v-for="child in item.menuResults">{{child.menuName}}</li>
-          </ul>
-        </li>
-      </div>
       <div class="fr user-menu">
         <li class="li-item ui-dropdown userInfo" v-if="userProfile.phone"  @click="toLogin()">
           <a href="javascript:;">
@@ -44,49 +36,18 @@ export default {
       }
     },
     computed: {
-      ...mapGetters(['userProfile','menuList'])
+      ...mapGetters(['userProfile'])
     },
     methods: {
       toLogin(){
-        if( document.location.host.indexOf('trc.com') != -1 ) {
-          api.logout().then(res=>{
-            document.location.href = 'http://passport.trc.com/login?redirectUrl=' + window.location.href;
-          })
-        }else {
-          api.logout().then(res=>{
-            this.$router.push("/login")
-            window.location.reload()
-          })
-          
-        }
-      },
-      saveMenuToStore(data){
-        this.$store.dispatch("saveMenuToStore",data)
-      },
-      enter(num){
-        this.showTab = num
-      },
-      leave(){
-        this.showTab = -1
+        api.logout().then(res=>{
+          this.$router.push("/login")
+        })
       }
     },
     created: function(){
       let that = this
-      this.$store.dispatch("getProfile", ()=>{
-        that.$store.dispatch("getMenu", (data)=>{
-          var urlMenu = window.location.hash,curMainMenu
-          if(urlMenu && (urlMenu !== '#/index')){
-            that.menuList.forEach(item=>{
-              item.menuResults.forEach(childItem=>{
-                if(childItem.menuUrl !== '' && urlMenu.indexOf(childItem.menuUrl) !== -1){
-                  curMainMenu = childItem.menuResults
-                }
-              })
-            })
-            that.saveMenuToStore(curMainMenu)
-          }
-        })
-      })
+      this.$store.dispatch("getProfile", ()=>{})
     }
 }
 </script>

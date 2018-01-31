@@ -15,6 +15,12 @@ const checkstandUrl = '/funds-checkstand-admin'
 
 const actions = {
     //框架通用action
+    getProfile({ commit,params }, fn) {
+        axios.get('/coin/user/profile', {params: params}).then(res=>{
+            commit('getProfileMutation', { data: res.data }, fn)
+            fn && fn()
+        });
+    },
     //左导航节点变化
     changeParentBarNode({ commit }, data) {
         commit('changeParentBarNodeMutation', { data: data })
@@ -36,6 +42,9 @@ const mutations = {
     changeParentBarNodeMutation: (state, { data }) => {
         state.parentBarNode = data
     },
+    getProfileMutation: (state, {data}, fn)=> {
+        state.userProfile = data
+    },
     saveMenuToStoreMutation: (state, {data})=> {
         data.forEach(item=>{
             item.isOpen = false
@@ -56,6 +65,9 @@ const mutations = {
 const getters = {
     getParentBarNode: state => {
         return state.parentBarNode
+    },
+    userProfile: state => {
+        return state.userProfile
     }
 }
 
